@@ -16,7 +16,7 @@ export function Counter() {
 				<button
 					className={styles.button}
 					aria-label="Decrement value"
-					onClick={() => dispatch(decrement())}
+					onClick={() => dispatch(decrement(5))}
 				>
 					-
 				</button>
@@ -24,7 +24,7 @@ export function Counter() {
 				<button
 					className={styles.button}
 					aria-label="Increment value"
-					onClick={() => dispatch(increment())}
+					onClick={() => dispatch(increment(5))}
 				>
 					+
 				</button>
