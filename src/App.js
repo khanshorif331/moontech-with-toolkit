@@ -1,12 +1,16 @@
-import { RouterProvider } from "react-router-dom";
-import routes from "./routes/routes";
+import { Provider } from 'react-redux'
+import { RouterProvider } from 'react-router-dom'
+import store from './app/store'
+import routes from './routes/routes'
 
 function App() {
-  return (
-    <div>
-      <RouterProvider router={routes} />
-    </div>
-  );
+	return (
+		<div>
+			<Provider store={store}>
+				<RouterProvider router={routes} />
+			</Provider>
+		</div>
+	)
 }
 
-export default App;
+export default App
