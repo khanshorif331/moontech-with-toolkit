@@ -4,10 +4,10 @@ import { BsFillCartFill } from 'react-icons/bs'
 import { IoIosListBox } from 'react-icons/io'
 import { BiSearchAlt } from 'react-icons/bi'
 // import { searchProduct } from '../../redux/actions/filterActions'
-import { useDispatch } from 'react-redux'
+// import { useDispatch } from 'react-redux'
 
 const Navbar = () => {
-	const dispatch = useDispatch()
+	// const dispatch = useDispatch()
 	const inputRef = useRef(null)
 	return (
 		<nav className="h-14 bg-indigo-200 rounded-full m-2 max-w-7xl mx-auto px-5">
