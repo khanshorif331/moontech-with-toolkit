@@ -23,6 +23,7 @@ const cartSlice = createSlice({
 			}
 		},
 	},
+	removeFromCart: (state, action) => {},
 })
 
 export const { addToCart } = cartSlice.actions
