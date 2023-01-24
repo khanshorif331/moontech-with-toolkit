@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { fetchProducts } from './productAPI'
 
 const initialState = {
 	products: [],
@@ -8,9 +9,8 @@ const initialState = {
 }
 
 export const getProducts = createAsyncThunk('products/getProduct', async () => {
-	const res = await fetch('https://moontech-server.vercel.app/products')
-	const data = await res.json()
-	return data.data
+	const products = await fetchProducts()
+	return products
 })
 
 const productsSlice = createSlice({
