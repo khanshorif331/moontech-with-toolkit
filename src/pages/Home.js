@@ -19,6 +19,49 @@ const Home = () => {
 			.then(data => setProducts(data.data))
 	}, [])
 
+	let content
+	if (products.length) {
+		content = products.map(product => (
+			<ProductCard key={product.model} product={product} />
+		))
+	}
+
+	if (products.length && (stock || brands.length)) {
+		content = products
+			.filter(product => {
+				if (stock) {
+					return product.status === true
+				}
+				return product
+			})
+			.filter(product => {
+				if (brands.length) {
+					return brands.includes(product.brand)
+				}
+				return product
+			})
+			.map(product => <ProductCard key={product.model} product={product} />)
+	}
+
+	// if (products.length && keyword.length) {
+	// 	let searchProduct = products
+	// 		.filter(product => {
+	// 			if (product.model.toLowerCase().includes(keyword.toLowerCase())) {
+	// 				return product
+	// 			}
+	// 			return null
+	// 		})
+	// 		.map(product => <ProductCard key={product.model} product={product} />)
+	// 	content = searchProduct.length ? (
+	// 		searchProduct
+	// 	) : (
+	// 		<p className="font-bold text-red-500 text-center w-full">
+	// 			No search result found!!
+	// 		</p>
+	// 	)
+	// 	console.log(searchProduct)
+	// }
+
 	return (
 		<div className="max-w-7xl gap-14 mx-auto my-10">
 			<div className="mb-10 flex justify-end gap-5">
@@ -50,9 +93,10 @@ const Home = () => {
 				</button>
 			</div>
 			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-14">
-				{products.map(product => (
+				{content}
+				{/* {products.map(product => (
 					<ProductCard product={product}></ProductCard>
-				))}
+				))} */}
 			</div>
 		</div>
 	)
