@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import {
 	getProducts,
 	removeProduct,
+	toggleDeleteSuccess,
 } from '../../features/products/productsSlice'
 
 const ProductList = () => {
@@ -20,7 +21,8 @@ const ProductList = () => {
 		if (!isLoading && deleteSuccess) {
 			toast.success('Product deleted successfully')
 		}
-	}, [isLoading, deleteSuccess])
+		dispatch(toggleDeleteSuccess())
+	}, [isLoading, deleteSuccess, dispatch])
 
 	if (isLoading) {
 		return <h1>Loading...</h1>
