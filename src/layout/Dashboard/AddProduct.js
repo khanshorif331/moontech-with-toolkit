@@ -46,7 +46,6 @@ const AddProduct = () => {
 
 		console.log(product)
 		dispatch(addProduct(product))
-		// dispatch(addProductData(product))
 	}
 
 	return (
