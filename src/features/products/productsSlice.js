@@ -1,9 +1,10 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { fetchProducts } from './productAPI'
+import { fetchProducts, postProduct } from './productAPI'
 
 const initialState = {
 	products: [],
 	isLoading: false,
+	postSuccess: false,
 	isError: false,
 	error: '',
 }
@@ -12,6 +13,14 @@ export const getProducts = createAsyncThunk('products/getProduct', async () => {
 	const products = await fetchProducts()
 	return products
 })
+
+export const addProduct = createAsyncThunk(
+	'products/addProduct',
+	async data => {
+		const products = await postProduct(data)
+		return products
+	}
+)
 
 const productsSlice = createSlice({
 	name: 'products',
@@ -33,8 +42,24 @@ const productsSlice = createSlice({
 				state.isError = true
 				state.error = action.error.message
 			})
+			.addCase(addProduct.pending, state => {
+				state.isLoading = true
+				state.isError = false
+				state.postSuccess = false
+			})
+			.addCase(addProduct.fulfilled, state => {
+				state.postSuccess = true
+				state.isLoading = false
+				state.isError = false
+			})
+			.addCase(addProduct.rejected, (state, action) => {
+				// state.products = []
+				state.isLoading = false
+				state.isError = true
+				// state.error = action.error.message
+				state.postSuccess = false
+			})
 	},
 })
 
-// export const {} = productsSlice.actions
 export default productsSlice.reducer
