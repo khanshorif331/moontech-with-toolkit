@@ -1,6 +1,7 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
+import { addProduct } from '../../features/products/productsSlice'
 // import addProductData from '../../redux/thunk/products/addProductData'
 
 const AddProduct = () => {
@@ -23,6 +24,7 @@ const AddProduct = () => {
 		}
 
 		console.log(product)
+		dispatch(addProduct(product))
 		// dispatch(addProductData(product))
 	}
 

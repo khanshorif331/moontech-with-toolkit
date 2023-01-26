@@ -1,16 +1,18 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-// import deleteProduct from '../../redux/thunk/products/deleteProduct'
-// import loadProductData from '../../redux/thunk/products/fetchProducts'
+import { getProducts } from '../../features/products/productsSlice'
 
 const ProductList = () => {
-	// const products = useSelector(state => state.product.products)
-	let products = ['a', 'b', 'c']
+	const { products, isLoading } = useSelector(state => state.products)
 	const dispatch = useDispatch()
 
-	// useEffect(() => {
-	// 	dispatch(loadProductData())
-	// })
+	useEffect(() => {
+		dispatch(getProducts())
+	}, [dispatch])
+
+	if (isLoading) {
+		return <h1>Loading</h1>
+	}
 
 	return (
 		<div class="flex flex-col justify-center items-center h-full w-full ">
