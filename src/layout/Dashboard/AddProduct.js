@@ -7,7 +7,6 @@ import {
 	addProduct,
 	togglePostSuccess,
 } from '../../features/products/productsSlice'
-// import addProductData from '../../redux/thunk/products/addProductData'
 
 const AddProduct = () => {
 	const { register, handleSubmit, reset } = useForm()
