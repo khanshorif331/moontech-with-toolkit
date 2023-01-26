@@ -1,17 +1,29 @@
 import { useEffect } from 'react'
+import { toast } from 'react-hot-toast'
 import { useDispatch, useSelector } from 'react-redux'
-import { getProducts } from '../../features/products/productsSlice'
+import {
+	getProducts,
+	removeProduct,
+} from '../../features/products/productsSlice'
 
 const ProductList = () => {
-	const { products, isLoading } = useSelector(state => state.products)
+	const { products, isLoading, deleteSuccess, isError, error } = useSelector(
+		state => state.products
+	)
 	const dispatch = useDispatch()
 
 	useEffect(() => {
 		dispatch(getProducts())
 	}, [dispatch])
 
+	useEffect(() => {
+		if (!isLoading && deleteSuccess) {
+			toast.success('Product deleted successfully')
+		}
+	}, [isLoading, deleteSuccess])
+
 	if (isLoading) {
-		return <h1>Loading</h1>
+		return <h1>Loading...</h1>
 	}
 
 	return (
@@ -85,7 +97,8 @@ const ProductList = () => {
 									<td class="p-2">
 										<div class="flex justify-center">
 											<button
-											// onClick={() => dispatch(deleteProduct(_id))}
+												// onClick={() => dispatch(deleteProduct(_id))}
+												onClick={() => dispatch(removeProduct(_id))}
 											>
 												<svg
 													class="w-8 h-8 hover:text-blue-600 rounded-full hover:bg-gray-100 p-1"
