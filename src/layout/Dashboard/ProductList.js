@@ -1,12 +1,10 @@
 import { useEffect } from 'react'
 import { toast } from 'react-hot-toast'
 import { useDispatch, useSelector } from 'react-redux'
-import { useGetProductsQuery } from '../../features/api/apiSlice'
-// import {
-// 	getProducts,
-// 	removeProduct,
-// 	toggleDeleteSuccess,
-// } from '../../features/products/productsSlice'
+import {
+	useGetProductsQuery,
+	useRemoveProductMutation,
+} from '../../features/api/apiSlice'
 
 const ProductList = () => {
 	// const { products, isLoading, deleteSuccess, isError, error } = useSelector(
@@ -14,7 +12,7 @@ const ProductList = () => {
 	// )
 	const { data, isLoading, isSuccess, isError, error } = useGetProductsQuery()
 	const products = data?.data
-	const dispatch = useDispatch()
+	const [removeProduct, result] = useRemoveProductMutation()
 
 	// useEffect(() => {
 	// 	dispatch(getProducts())
@@ -101,10 +99,7 @@ const ProductList = () => {
 									</td>
 									<td class="p-2">
 										<div class="flex justify-center">
-											<button
-											// onClick={() => dispatch(deleteProduct(_id))}
-											// onClick={() => dispatch(removeProduct(_id))}
-											>
+											<button onClick={() => removeProduct(_id)}>
 												<svg
 													class="w-8 h-8 hover:text-blue-600 rounded-full hover:bg-gray-100 p-1"
 													fill="none"

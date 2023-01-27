@@ -10,12 +10,7 @@ const Home = () => {
 	const { brands, stock } = filter
 	const dispatch = useDispatch()
 	const activeClass = 'text-white bg-indigo-500 border-white'
-	const { data, isLoading, isSuccess, isError, error } = useGetProductsQuery(
-		null,
-		{
-			refetchOnMountOrArgChange: true,
-		}
-	)
+	const { data, isLoading, isSuccess, isError, error } = useGetProductsQuery()
 	const products = data?.data
 
 	// useEffect(() => {
