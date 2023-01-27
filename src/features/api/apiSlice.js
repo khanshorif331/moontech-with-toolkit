@@ -6,8 +6,17 @@ export const productApi = createApi({
 		baseUrl: 'https://moontech-server.vercel.app',
 	}),
 	endpoints: builder => ({
-		getProduct: builder.query({
+		getProducts: builder.query({
 			query: () => '/products',
+		}),
+		addProduct: builder.mutation({
+			query: data => ({
+				url: '/product',
+				method: 'POST',
+				body: data,
+			}),
 		}),
 	}),
 })
+
+export const { useGetProductsQuery } = productApi
