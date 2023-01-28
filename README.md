@@ -6,3 +6,4 @@ server link : https://github.com/khanshorif331/moontech-server
 * React
 * Redux-toolkit
 * Redux-toolkit-query
+* Redux-thunk
